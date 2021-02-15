@@ -44,6 +44,7 @@
         android:layout_marginStart="11dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="203dp"
+        android:onClick="onclickGuess"
         android:text="Advinhar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buttonAdvance"
