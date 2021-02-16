@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,12 +20,15 @@ import br.ufpr.tads.guesscity.Model.City;
 
 public class MainActivity extends AppCompatActivity {
     private int answeredQuestions = 0, correctAnswers = 0;
+    private int count = 0;
 
     private ImageView cityImageView;
     private String correctAnswer, personAnswer;
 
+
     TextView answerTextView;
     EditText personGuess;
+    Button buttonGuess, buttonAdvance;
 
     City c0 = new City("Barcelona", R.drawable.barcelona);
     City c1 = new City("Brasília", R.drawable.brasilia);
@@ -51,6 +55,13 @@ public class MainActivity extends AppCompatActivity {
         answerTextView = findViewById(R.id.textViewAnswer);
         personGuess = findViewById(R.id.editTextPersonGuess);
         cityImageView = (ImageView) findViewById(R.id.imageView);
+        buttonGuess = findViewById(R.id.buttonGuess);
+        buttonAdvance = findViewById(R.id.buttonAdvance);
+
+        buttonAdvance.setEnabled(false);
+
+
+
         shuffleCities();
         showRandomCity();
     }
@@ -59,14 +70,16 @@ public class MainActivity extends AppCompatActivity {
         answerTextView.setText("");
         personGuess.setText("");
 
-        if (answeredQuestions == 4) {
-            Intent intent = new Intent(MainActivity.this, ResultActivity.class);
-            intent.putExtra("correctAnswers", correctAnswers);
-            startActivity(intent);
-            finish();
-        } else {
-            showRandomCity();
-        }
+            if (answeredQuestions == 4) {
+                Intent intent = new Intent(MainActivity.this, ResultActivity.class);
+                intent.putExtra("correctAnswers", correctAnswers);
+                startActivity(intent);
+                finish();
+            } else {
+                showRandomCity();
+                buttonGuess.setEnabled(true);
+                buttonAdvance.setEnabled(false);
+            }
     }
 
     public void onclickGuess(View view) {
@@ -79,9 +92,14 @@ public class MainActivity extends AppCompatActivity {
             answerTextView.setTextColor(Color.GREEN);
             answerTextView.setText("Você acertou! Parabéns!");
             correctAnswers++;
+            buttonAdvance.setEnabled(true);
         } else {
             answerTextView.setTextColor(Color.RED);
             answerTextView.setText("Você Errou :( \n Resposta Correta: " + correctAnswer);
+            buttonGuess.setEnabled(false);
+            buttonAdvance.setEnabled(true);
+
+
         }
         answeredQuestions++;
     }
