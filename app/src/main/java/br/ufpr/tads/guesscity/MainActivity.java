@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         answerTextView = findViewById(R.id.textViewAnswer);
         personGuess = findViewById(R.id.editTextPersonGuess);
         cityImageView = (ImageView) findViewById(R.id.imageView);
+        shuffleCities();
         showRandomCity();
     }
 
@@ -80,31 +81,17 @@ public class MainActivity extends AppCompatActivity {
             correctAnswers++;
         } else {
             answerTextView.setTextColor(Color.RED);
-            answerTextView.setText("Você Errou.. \n Resposta Correta: " + correctAnswer);
+            answerTextView.setText("Você Errou :( \n Resposta Correta: " + correctAnswer);
         }
         answeredQuestions++;
     }
 
     public void showRandomCity(){
-        shuffleCities();
-        cityImageView.setImageResource(citiesArray[0].getCityImage());
-        correctAnswer = citiesArray[0].getCityName();
+        cityImageView.setImageResource(citiesArray[answeredQuestions].getCityImage());
+        correctAnswer = citiesArray[answeredQuestions].getCityName();
     }
 
-    //Sorteia uma cidade do Array:
     public void shuffleCities(){
-        do {
-            Collections.shuffle(Arrays.asList(citiesArray));
-        } while (checkRandom(citiesArray[0].getCityName()));
-    }
-
-    //Verifica se já foi perguntado sobre a cidade sorteada:
-    public boolean checkRandom(String cityName){
-        if(answeredCities.size() > 0)
-            for (String c : answeredCities) {
-                if(c.equals(cityName))
-                    return true;
-            }
-        return false;
+        Collections.shuffle(Arrays.asList(citiesArray));
     }
 }
