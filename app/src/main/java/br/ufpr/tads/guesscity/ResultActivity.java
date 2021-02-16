@@ -27,15 +27,15 @@ public class ResultActivity extends AppCompatActivity {
             case 0:
                 return "Não foi dessa vez :( ";
             case 1:
-                return "Melhor que nada..";
+                return "Melhor que nada";
             case 2:
                 return "Acertou metade, já está valendo!";
             case 3:
                 return "Parabéns!";
             case 4:
-                return "Certou todas! Você é D+!";
+                return "Acertou todas! Você é demais!";
             default:
-                return "Ops, algo deu errado..";
+                return "Ops, algo deu errado";
 
         }
     }
