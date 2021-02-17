@@ -92,15 +92,13 @@ public class MainActivity extends AppCompatActivity {
             answerTextView.setTextColor(Color.GREEN);
             answerTextView.setText("Você acertou! Parabéns!");
             correctAnswers++;
-            buttonAdvance.setEnabled(true);
         } else {
             answerTextView.setTextColor(Color.RED);
             answerTextView.setText("Você Errou :( \n Resposta Correta: " + correctAnswer);
-            buttonGuess.setEnabled(false);
-            buttonAdvance.setEnabled(true);
-
-
         }
+        buttonAdvance.setEnabled(true);
+        buttonGuess.setEnabled(false);
+
         answeredQuestions++;
     }
 
